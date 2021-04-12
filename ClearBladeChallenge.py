@@ -11,17 +11,6 @@ user = system.User("tomwhou@gmail.com", "ClearBladeChallenge")
 
 mqtt_service = system.Messaging(user)
 
-# def on_publish(client, userdata, mid):
-# 	print(client)
-# 	print(userdata)
-	# print(mid)
-	# test = system.Service("Test")
-	# params = {
-		
-	# }
-	# test.execute(user, params)
-
-# mqtt_service.on_publish = on_publish
 mqtt_service.connect()
 
 while True:
