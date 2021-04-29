@@ -18,12 +18,11 @@ function CodingChallengeDataCollection(req,resp){
     ClearBlade.init({request:req});
     var callback = function (err, data) {
         if (err) {
-        	resp.error("creation error : " + JSON.stringify(data));
+        	resp.error("Item creation error : " + err);
         } else {
-        	resp.success(data);
+        	resp.success("Item successfully added to collection");
         }
     };
-    log(params);
     message = {
         cpu_usage: parseFloat(params.body)
     };
