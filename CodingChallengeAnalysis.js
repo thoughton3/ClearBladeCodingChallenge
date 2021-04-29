@@ -18,7 +18,7 @@ function CodingChallengeAnalysis(req,resp){
     ClearBlade.init({request:req});
     var fetch_callback = function (err, data) {
         if (err) {
-        	resp.error("creation error : " + JSON.stringify(data));
+        	resp.error("Error fetching collection data : " + err);
         } else {
             var total = 0;
             for (var i = 0; i < data.TOTAL; i++) {
@@ -31,16 +31,11 @@ function CodingChallengeAnalysis(req,resp){
             var mqtt_service = ClearBlade.Messaging();
             mqtt_service.publish("analytics", "Current High: " + high + " Current Low: " + low + " Current Average: " + average);
 
-            log(average);
-            log(high);
-            log(low);
-        	resp.success(data);
+        	resp.success("Data successfully fetched");
         }
     };
     var query = ClearBlade.Query({collectionName: "CodingChallengeData" });
     query.setPage(0, 0);
     query.ascending("cpu_usage");
     query.fetch(fetch_callback);
-    
-
 }
